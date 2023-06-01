@@ -17,6 +17,7 @@
   --black: #1f191b;
   --light-green: #e8e8a6;
   --accent-color: #059c80;
+  --dark-accent-color: #047862;
 
   --font-title: "nanumMyeongjo";
   --font-normal: "notoSans";
@@ -128,34 +129,31 @@ ul li {
 }
 
 /* ===== NAVBAR 2 - CATEGORY ===== */
-.navbar2 {
+.category {
   padding: 2% 5% 2% 5%;
   background-color: var(--white);
   border-bottom: 1px solid var(--grey);
   width: 100%;
   overflow: auto;
-}
-.navbar2::-webkit-scrollbar {
-  height: 7px;
-}
-.navbar2::-webkit-scrollbar-thumb {
-  background: var(--light-grey2);
-  border-radius: 2em;
-}
-.navbar2::-webkit-scrollbar-track {
-  background: var(--white);
-}
-/* ===== NAVBAR 1. ===== */
-.navbar2__menu {
   display: flex;
   justify-content: space-between;
 }
-.navbar2__menu li {
+.category::-webkit-scrollbar {
+  height: 7px;
+}
+.category::-webkit-scrollbar-thumb {
+  background: var(--light-grey2);
+  border-radius: 2em;
+}
+.category::-webkit-scrollbar-track {
+  background: var(--white);
+}
+.category li {
   font-size: 0.9rem;
   color: var(--black);
   padding: 10px;
 }
-.navbar2__menu li:hover {
+.category li:hover {
   border-radius: 10px;
   background-color: var(--accent-color);
   color: var(--white);
@@ -183,7 +181,6 @@ main section {
 .card-list {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
 }
 
 .card-item {
@@ -222,18 +219,16 @@ main section {
 
 .card-desc {
   padding: 1.2rem;
+  text-align: center;
 }
 .card-desc h5 {
   color: var(--black);
   font-weight: bold;
-  text-align: center;
   margin-bottom: 1rem;
 }
 /* price */
 .card-desc div {
   margin-bottom: 1rem;
-  display: flex;
-  justify-content: center;
 }
 .card-desc div span:first-child {
   text-decoration: line-through;
@@ -253,21 +248,15 @@ main section {
 }
 
 /* ===== FOOTER ===== */
-.footer {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+footer {
   background: var(--black);
-  color: var(--grey);
-  font-size: 0.9rem;
-  padding: 5% 5% 5% 5%;
 }
 
 footer ul {
+  padding-top: 3%;
+  padding-bottom: 3%;
   display: flex;
-  flex-direction: row;
-  justify-content: space-evenly;
+  justify-content: center;
   white-space: nowrap;
 }
 
@@ -279,17 +268,20 @@ footer ul li:last-child {
 }
 footer ul li a {
   color: var(--light-grey);
-  padding: 15px;
+  font-size: 0.9rem;
+  padding: 10px;
 }
 footer ul li a:hover {
   color: var(--accent-color);
 }
-
 footer p {
-  margin-top: 4%;
+  padding-bottom: 3%;
+  text-align: center;
+  color: var(--light-grey);
+  font-size: 0.9rem;
 }
 
-.anchor {
+.topBtn {
   position: fixed;
   right: 30px;
   bottom: 30px;
@@ -307,6 +299,56 @@ footer p {
   font-size: 1rem;
 }
 
+/* Detail Page */
+.detail {
+  background: var(--white);
+  display: flex;
+  justify-content: center;
+}
+.detail-desc {
+  margin-left: 30px;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+.detail-desc div {
+  margin: 10px;
+}
+.detail-desc div:first-child {
+  font-size: 1.3rem;
+}
+.detail-desc div:nth-child(3) {
+  font-size: 1.2rem;
+}
+.detail-desc button:first-child {
+  margin-right: 10px;
+}
+
+/* === Button Styles === */
+.btn {
+  padding: 0.5rem;
+  font-size: 0.9rem;
+  border-radius: 0.3rem;
+  white-space: nowrap;
+}
+.accent {
+  background: var(--accent-color);
+  border: 1px solid var(--dark-accent-color);
+  color: var(--white);
+}
+.accent:hover {
+  background: var(--dark-accent-color);
+}
+.outline-accent {
+  background: var(--white);
+  border: 1px solid var(--accent-color);
+  color: var(--accent-color);
+}
+.outline-accent:hover {
+  background: var(--accent-color);
+  color: var(--white);
+}
+
 /* PC */
 @media all and (min-width: 1201px) {
   .navbar {
@@ -319,7 +361,7 @@ footer p {
     max-width: 100%;
   }
 
-  .navbar2 {
+  .category {
     padding: 1% 13% 1% 13%;
   }
 
@@ -337,7 +379,7 @@ footer p {
   .navbar {
     padding: 3% 10% 1% 10%;
   }
-  .navbar2 {
+  .category {
     padding: 1% 10% 1% 10%;
   }
 
@@ -362,7 +404,10 @@ footer p {
   .navbar__search {
     max-width: 50%;
   }
-  /* //////////////// \ nav */
+  .detail {
+    flex-direction: column;
+    align-items: center;
+  }
 }
 
 /* Phone */
@@ -372,7 +417,7 @@ footer p {
     flex-direction: column;
     padding: 2%;
   }
-  .navbar2 {
+  .category {
     padding: 1% 10% 1% 10%;
   }
 
@@ -410,7 +455,7 @@ footer p {
     text-align: center;
   }
   /* ///////////// \ nav */
-  .navbar2 {
+  .category {
     padding: 1% 1% 1% 1%;
   }
 
@@ -425,8 +470,13 @@ footer p {
     margin: 2% 1% 2% 1%;
   }
 
-  .footer {
-    font-size: 0.7rem;
-    padding: 10% 1%;
+  .detail {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  footer ul {
+    padding-top: 5%;
+    padding-bottom: 5%;
   }
 }
