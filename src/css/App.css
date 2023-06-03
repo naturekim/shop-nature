@@ -31,12 +31,13 @@ html,
 body {
   width: 100%;
   height: 100%;
-  background: var(--light-grey);
+  background: var(--white);
 }
 
 input,
 li,
 a,
+button,
 body {
   font-family: var(--font-normal) !important;
 }
@@ -54,11 +55,6 @@ input {
   overflow: hidden;
 }
 
-button {
-  cursor: pointer;
-  border-style: none;
-}
-
 ul li {
   list-style: none;
   cursor: pointer;
@@ -66,27 +62,71 @@ ul li {
   white-space: nowrap; /* 텍스트 한줄에 */
 }
 
+main {
+  min-height: 80vh;
+  flex-grow: 1;
+  padding: 5% 6% 5% 6%;
+}
+
+main section {
+  margin-bottom: 7%;
+}
+
+button {
+  cursor: pointer;
+  border-style: none;
+  background: transparent;
+}
+
+/* === Button Styles === */
+.btn {
+  padding: 0.5rem;
+  font-size: 0.9rem;
+  border-radius: 0.3rem;
+  white-space: nowrap;
+}
+.accent {
+  background: var(--accent-color);
+  border: 1px solid var(--dark-accent-color);
+  color: var(--white);
+}
+.accent:hover {
+  background: var(--dark-accent-color);
+}
+.outline-accent {
+  background: var(--white);
+  border: 1px solid var(--accent-color);
+  color: var(--accent-color);
+}
+.outline-accent:hover {
+  background: var(--accent-color);
+  color: var(--white);
+}
+
+/* ===== NAVBAR 1 ===== */
 .navbar__toggle {
   display: none;
 }
 
 .navbar {
-  padding: 5% 5% 2% 5%;
+  padding: 20px 5%;
   width: 100%;
   background-color: var(--white);
   display: flex;
   justify-content: space-between;
   align-items: center;
-  /* 
-  position: sticky;
+
+  /* position: fixed;
   top: 0;
-  z-index: 3; */
+  z-index: 5; */
 }
 
 .navbar__logo a h1 {
   color: var(--accent-color);
-  font-family: var(--font-title);
-  font-size: 1.5rem;
+  font-family: var(--font-normal);
+  /* font-family: var(--font-title); */
+  font-size: 1.3rem;
+  font-weight: 700;
   white-space: nowrap;
 }
 
@@ -130,13 +170,12 @@ ul li {
 
 /* ===== NAVBAR 2 - CATEGORY ===== */
 .category {
-  padding: 2% 5% 2% 5%;
+  padding: 5px 5%;
   background-color: var(--white);
   border-bottom: 1px solid var(--grey);
   width: 100%;
   overflow: auto;
   display: flex;
-  justify-content: space-between;
 }
 .category::-webkit-scrollbar {
   height: 7px;
@@ -149,6 +188,8 @@ ul li {
   background: var(--white);
 }
 .category li {
+  flex: 1;
+  text-align: center;
   font-size: 0.9rem;
   color: var(--black);
   padding: 10px;
@@ -160,10 +201,6 @@ ul li {
 }
 
 /* ===== MAIN ===== */
-main section {
-  padding: 5% 6% 5% 6%;
-}
-
 .section__title {
   display: flex;
   justify-content: center;
@@ -253,8 +290,8 @@ footer {
 }
 
 footer ul {
-  padding-top: 3%;
-  padding-bottom: 3%;
+  padding-top: 50px;
+  padding-bottom: 50px;
   display: flex;
   justify-content: center;
   white-space: nowrap;
@@ -275,7 +312,7 @@ footer ul li a:hover {
   color: var(--accent-color);
 }
 footer p {
-  padding-bottom: 3%;
+  padding-bottom: 20px;
   text-align: center;
   color: var(--light-grey);
   font-size: 0.9rem;
@@ -299,11 +336,34 @@ footer p {
   font-size: 1rem;
 }
 
-/* Detail Page */
+/* ===== Detail Page ===== */
 .detail {
   background: var(--white);
   display: flex;
   justify-content: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+.detail-image {
+  width: 50%;
+  position: relative;
+  /* 모서리둥글게 */
+  border-radius: 4px;
+  overflow: hidden;
+}
+.detail-image::after {
+  /* 이미지 사이즈, 비율 처리 - 정사각형 */
+  display: block;
+  content: "";
+  padding-bottom: 100%;
+}
+.detail-image img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* 가로세로비를 유지하면서 콘텐츠박스를 가득 채움, 안맞으면 잘림 */
 }
 .detail-desc {
   margin-left: 30px;
@@ -323,36 +383,49 @@ footer p {
 .detail-desc button:first-child {
   margin-right: 10px;
 }
-
-/* === Button Styles === */
-.btn {
-  padding: 0.5rem;
-  font-size: 0.9rem;
-  border-radius: 0.3rem;
-  white-space: nowrap;
+/* for transition */
+.start {
+  opacity: 0;
 }
-.accent {
-  background: var(--accent-color);
-  border: 1px solid var(--dark-accent-color);
-  color: var(--white);
+.end {
+  opacity: 1;
+  transition: opacity 0.5s;
 }
-.accent:hover {
-  background: var(--dark-accent-color);
+/* tab */
+.tab {
+  display: flex;
+  background: var(--light-grey);
+  color: var(--black);
 }
-.outline-accent {
+.tab button {
+  padding: 15px;
+  flex: 1;
+  font-size: 1rem;
+  border: 1px solid var(--grey);
+  border-bottom: 1px solid var(--accent-color);
+  margin: 0 0 0 -1px; /* 탭사이 선은 1개로 보이게 */
+  position: relative; /* z-index 주기위해 설정 */
+}
+.tab button:hover {
+  background: var(--light-grey2);
+}
+.tab button.on {
   background: var(--white);
-  border: 1px solid var(--accent-color);
   color: var(--accent-color);
+  border-top: 1px solid var(--accent-color);
+  border-right: 1px solid var(--accent-color);
+  border-left: 1px solid var(--accent-color);
+  border-bottom: none;
+  z-index: 2; /* 탭사이 선을 위로 올림 */
 }
-.outline-accent:hover {
-  background: var(--accent-color);
-  color: var(--white);
+.tab-content {
+  padding: 5%;
 }
 
 /* PC */
 @media all and (min-width: 1201px) {
   .navbar {
-    padding: 3% 13% 1% 13%;
+    padding: 20px 13%;
   }
 
   .navbar__search {
@@ -362,10 +435,10 @@ footer p {
   }
 
   .category {
-    padding: 1% 13% 1% 13%;
+    padding: 5px 13%;
   }
 
-  main section {
+  main {
     padding: 3% 13% 5% 13%;
   }
 
@@ -373,17 +446,20 @@ footer p {
     width: 23%;
     margin: 1%;
   }
+  .detail-image {
+    width: 40%;
+  }
 }
 
 @media all and (min-width: 840px) and (max-width: 1200px) {
   .navbar {
-    padding: 3% 10% 1% 10%;
+    padding: 20px 10%;
   }
   .category {
-    padding: 1% 10% 1% 10%;
+    padding: 5px 10%;
   }
 
-  main section {
+  main {
     padding: 3% 10% 5% 10%;
   }
 
@@ -408,6 +484,9 @@ footer p {
     flex-direction: column;
     align-items: center;
   }
+  .detail-image {
+    width: 80%;
+  }
 }
 
 /* Phone */
@@ -415,10 +494,10 @@ footer p {
   /* ///////////// nav */
   .navbar {
     flex-direction: column;
-    padding: 2%;
+    padding: 20px 2%;
   }
   .category {
-    padding: 1% 10% 1% 10%;
+    padding: 5px 10%;
   }
 
   .navbar__logo {
@@ -459,7 +538,7 @@ footer p {
     padding: 1% 1% 1% 1%;
   }
 
-  main section {
+  main {
     padding: 5% 1% 5% 1%;
   }
   .section__title {
@@ -474,9 +553,8 @@ footer p {
     flex-direction: column;
     align-items: center;
   }
-
-  footer ul {
-    padding-top: 5%;
-    padding-bottom: 5%;
+  .detail-image {
+    width: 90%;
+    margin-bottom: 20px;
   }
 }
