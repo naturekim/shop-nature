@@ -13,7 +13,8 @@ import {
 import { useState } from "react";
 import { Link, Outlet, Route, Routes, useNavigate } from "react-router-dom";
 import data from "./data.js";
-import Detail from "./Detail.js";
+import Detail from "./routes/Detail.js";
+import Cart from "./routes/Cart.js";
 
 function App() {
   const [items, setItems] = useState(data);
@@ -33,7 +34,7 @@ function App() {
             {/* 토글버튼 */}
             <ul className="navbar__toggle">
               <li>
-                <Link to="/basket">
+                <Link to="/cart">
                   <FontAwesomeIcon icon={faCartShopping} />
                 </Link>
               </li>
@@ -62,7 +63,7 @@ function App() {
           </div>
           <ul className="navbar__menu">
             <li>
-              <Link to="/basket">
+              <Link to="/cart">
                 <>
                   <FontAwesomeIcon icon={faCartShopping} />
                   <span>장바구니</span>
@@ -121,7 +122,7 @@ function App() {
           }
         />
         <Route path="/detail/:id" element={<Detail items={items} />} />
-        <Route path="/basket" element={<Basket />} />
+        <Route path="/cart" element={<Cart />} />
         <Route path="/login" element={<div>로그인페이지</div>} />
         <Route path="/mypage" element={<Mypage />}>
           <Route path="orderlist" element={<section>주문조회</section>} />
@@ -187,24 +188,17 @@ function Mypage() {
     <main>
       <h4 className="section__title">마이페이지</h4>
       <section>
-        <nav class="tab">
+        <nav className="tab">
           <button className="on">주문조회</button>
           <button>문의내역</button>
           <button>회원정보수정</button>
         </nav>
-        <div class="tab-content">
+        <div className="tab-content">
           <Outlet />
         </div>
       </section>
     </main>
   );
 }
-function Basket() {
-  return (
-    <main>
-      <h4 className="section__title">장바구니</h4>
-      <section></section>
-    </main>
-  );
-}
+
 export default App;

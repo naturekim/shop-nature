@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
+import { addItem } from "../store";
 
 function Detail(props) {
   let [탭, 탭변경] = useState(0);
@@ -17,25 +19,53 @@ function Detail(props) {
 
   return (
     <main className={"start " + fade2}>
-      <section className="detail">
-        <div className="detail-image">
-          <img src={`${process.env.PUBLIC_URL}/img/${찾은상품.img}.jpg`} />
-        </div>
-        <div className="detail-desc">
-          <div>{찾은상품.title}</div>
-          <div>{찾은상품.content}</div>
-          <div>{찾은상품.price}원</div>
-          <div>
-            <button className="btn outline-accent">장바구니담기</button>
-            <button className="btn accent">주문하기</button>
-          </div>
-        </div>
-      </section>
+      {찾은상품 == null ? (
+        <section>없는 상품입니다.</section>
+      ) : (
+        <Product 찾은상품={찾은상품} />
+      )}
       <section>
         <Tab 탭={탭} 탭변경={탭변경} />
         <TabContent 탭={탭} />
       </section>
     </main>
+  );
+}
+
+function Product(props) {
+  let dispatch = useDispatch();
+  return (
+    <section className="detail">
+      <div className="detail-image">
+        <img src={`${process.env.PUBLIC_URL}/img/${props.찾은상품.img}.jpg`} />
+      </div>
+      <div className="detail-desc">
+        <div>{props.찾은상품.title}</div>
+        <div>{props.찾은상품.content}</div>
+        <div>{props.찾은상품.price}원</div>
+        <div>
+          <button
+            className="btn accent"
+            onClick={() => {
+              
+              dispatch(
+                addItem({
+                  id: props.찾은상품.id,
+                  img: props.찾은상품.img,
+                  title: props.찾은상품.title,
+                  price: props.찾은상품.price,
+                  count: 1,
+                })
+                 
+              );
+              
+            }}
+          >
+            장바구니
+          </button>
+        </div>
+      </div>
+    </section>
   );
 }
 
@@ -49,6 +79,7 @@ function Tab(props) {
             onClick={() => {
               props.탭변경(i);
             }}
+            key={i}
           >
             {tab}
           </button>
@@ -57,6 +88,7 @@ function Tab(props) {
             onClick={() => {
               props.탭변경(i);
             }}
+            key={i}
           >
             {tab}
           </button>
