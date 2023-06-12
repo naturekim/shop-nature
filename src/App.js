@@ -11,17 +11,16 @@ import {
   faChevronUp,
 } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
-import { Link, Outlet, Route, Routes, useNavigate } from "react-router-dom";
+import { Link, Outlet, Route, Routes } from "react-router-dom";
 import data from "./data.js";
 import Detail from "./routes/Detail.js";
 import Cart from "./routes/Cart.js";
 
 function App() {
   const [items, setItems] = useState(data);
-  let navigate = useNavigate();
 
   return (
-    <>
+    <div id="top">
       {/* Header */}
       <header>
         <nav className="navbar">
@@ -110,7 +109,7 @@ function App() {
                   </span>
                   <h3>이번주 인기상품</h3>
                 </div>
-                <div className="card-list">
+                <div className="wrapper-row-wrap">
                   {items.length > 0 &&
                     items.map((item, i) => {
                       return <Card item={item} key={i} />;
@@ -153,24 +152,25 @@ function App() {
           </li>
         </ul>
         <p>© 2023 자연농원</p>
-        <a href="#header" className="topBtn accent">
+        <a href="#top" className="topBtn accent">
           <FontAwesomeIcon icon={faChevronUp} />
         </a>
       </footer>
-    </>
+    </div>
   );
 }
 
 function Card(props) {
   return (
-    <div className="card-item">
+    <div className="card">
       <Link to={"/detail/" + props.item.id}>
-        <div className="card-image">
+        <div className="card__image">
           <img
+            alt={props.item.title}
             src={process.env.PUBLIC_URL + "/img/" + props.item.img + ".jpg"}
           />
         </div>
-        <div className="card-desc">
+        <div className="card__desc">
           <h5>{props.item.title}</h5>
           <div>
             <span>20000원</span>

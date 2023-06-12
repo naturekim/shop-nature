@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { addItem } from "../store";
 
 function Detail(props) {
   let [탭, 탭변경] = useState(0);
   let { id } = useParams();
-  let 찾은상품 = props.items.find((x) => x.id == id);
+  let 찾은상품 = props.items.find((x) => x.id === Number(id));
   let [fade2, setFade2] = useState("");
 
   // 전환 애니메이션
@@ -33,13 +33,26 @@ function Detail(props) {
 }
 
 function Product(props) {
+  let navigate = useNavigate();
   let dispatch = useDispatch();
+  const onConfirm = () => {
+    if (
+      window.confirm(
+        "장바구니에 상품을 담았습니다.\n장바구니로 이동하시겠습니까?"
+      )
+    ) {
+      navigate("/cart");
+    }
+  };
+
   return (
     <section className="detail">
-      <div className="detail-image">
-        <img src={`${process.env.PUBLIC_URL}/img/${props.찾은상품.img}.jpg`} />
+      <div className="detail__image">
+        <img
+        alt={props.찾은상품.title} 
+        src={`${process.env.PUBLIC_URL}/img/${props.찾은상품.img}.jpg`} />
       </div>
-      <div className="detail-desc">
+      <div className="detail__desc">
         <div>{props.찾은상품.title}</div>
         <div>{props.찾은상품.content}</div>
         <div>{props.찾은상품.price}원</div>
@@ -47,7 +60,6 @@ function Product(props) {
           <button
             className="btn accent"
             onClick={() => {
-              
               dispatch(
                 addItem({
                   id: props.찾은상품.id,
@@ -55,10 +67,10 @@ function Product(props) {
                   title: props.찾은상품.title,
                   price: props.찾은상품.price,
                   count: 1,
+                  checked: true,
                 })
-                 
               );
-              
+              onConfirm();
             }}
           >
             장바구니
