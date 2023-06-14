@@ -4,7 +4,6 @@ import {
   faChevronRight,
   faPlus,
   faEquals,
-  faX,
 } from "@fortawesome/free-solid-svg-icons";
 import {
   addCount,
