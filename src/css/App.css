@@ -328,10 +328,17 @@ footer ul {
 
 footer ul li {
   border-right: 1px solid var(--accent-color);
+  color: var(--light-grey);
+  font-size: 0.9rem;
+  padding: 0 10px;
+}
+footer ul li:hover {
+  color: var(--accent-color);
 }
 footer ul li:last-child {
   border-style: none;
 }
+/*
 footer ul li a {
   color: var(--light-grey);
   font-size: 0.9rem;
@@ -339,7 +346,7 @@ footer ul li a {
 }
 footer ul li a:hover {
   color: var(--accent-color);
-}
+} */
 footer p {
   padding-bottom: 20px;
   text-align: center;

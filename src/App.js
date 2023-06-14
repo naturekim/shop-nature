@@ -17,7 +17,7 @@ import Detail from "./routes/Detail.js";
 import Cart from "./routes/Cart.js";
 
 function App() {
-  const [items, setItems] = useState(data);
+  const [items] = useState(data);
 
   return (
     <div id="top">
@@ -45,7 +45,7 @@ function App() {
                 </Link>
               </li>
               <li>
-                <a href="#">
+                <a href="#!">
                   <FontAwesomeIcon icon={faBars} />
                 </a>
               </li>
@@ -142,13 +142,13 @@ function App() {
       <footer>
         <ul>
           <li>
-            <a>사업자정보</a>
+            사업자정보
           </li>
           <li>
-            <a>개인정보처리방침</a>
+            개인정보처리방침
           </li>
           <li>
-            <a>이용약관</a>
+            이용약관
           </li>
         </ul>
         <p>© 2023 자연농원</p>
