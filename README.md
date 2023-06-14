@@ -1,16 +1,19 @@
 # Ecommerce platform with React.js
 ## 자연농원
-리액트를 사용한 웹 프론트엔드 프로젝트입니다. [사이트 바로가기](https://naturefarm.netlify.com)
+[사이트 바로가기](https://naturefarm.netlify.com)   
+
+리액트를 사용한 웹 프론트엔드 프로젝트입니다. 
 - 개발 기간 및 인원
   - 2023.05.19 ~ 2023.06.12 (1명)  
 
 <br />
 
 # 🔍 Preview
-### Small Screen   
-
 ### Wide Screen   
+<img alt="wide-screen" src="https://github.com/naturekim/shop-nature/assets/66105089/4e428f31-d0a8-4358-8eca-624c8d48dfc4" width="69%">
 
+### Small Screen   
+<img alt="small-screen" src="https://github.com/naturekim/shop-nature/assets/66105089/a0a73284-f545-4611-8a53-dc6984e50d3e" width="29%">   
 
 <br />
 
@@ -91,4 +94,4 @@ $ npm start
 **아쉬운점**  
 
 이번에 useEffect를 많이 사용해보지 않아서 언제 사용하는지 잘 와닿지 않았다. 활용할 수 있는 곳을 찾아 더 사용해보고 싶다. 또한 백엔드도 개발해 axios도 사용해보고 싶다.   
-HTML 요소들이 추가될수록 css가 복잡해져서 다음날 수정하려고 하니 잊어버리고 복잡해서 scss의 필요성을 체감했다.
+HTML 요소들이 추가될수록 css가 복잡해져 다음날 수정하려고 하니 헷갈리는 스트레스가 있어 scss의 필요성을 체감했다.
