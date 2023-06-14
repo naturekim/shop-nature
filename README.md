@@ -1,6 +1,6 @@
 # Ecommerce platform with React.js
 ## 자연농원
-리액트를 사용한 웹 프론트엔드 프로젝트입니다. [사이트 바로가기](naturefarm.netrify.com)  
+리액트를 사용한 웹 프론트엔드 프로젝트입니다. [사이트 바로가기](https://naturefarm.netlify.com)
 - 개발 기간 및 인원
   - 2023.05.19 ~ 2023.06.12 (1명)  
 
