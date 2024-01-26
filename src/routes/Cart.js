@@ -11,7 +11,7 @@ import {
   deleteSelected,
   handleChkbox,
   handleAllChkbox,
-} from "../store";
+} from "../redux/cartSlice";
 import { useNavigate } from "react-router-dom";
 
 function Cart() {
@@ -35,7 +35,7 @@ function Cart() {
   });
 
   return (
-    <main className="cart">
+    <section>
       <h4 className="section__title">장바구니</h4>
       {state.cart.length === 0 ? (
         <section className="cart-empty">
@@ -46,7 +46,7 @@ function Cart() {
           </button>
         </section>
       ) : (
-        <section>
+        <>
           <div className="cart__header">
             <div className="checkbox-wrapper-18">
               <div className="round">
@@ -117,28 +117,28 @@ function Cart() {
                 {state.cart[i].title}
               </div>
               <div>
-              {/* 4. 수량 */}
-              <div>
-                <button
-                  className="btn-sm basic"
-                  onClick={() => {
-                    dispatch(addCount({ id: state.cart[i].id, amount: -1 }));
-                  }}
-                >
-                  -
-                </button>
-                {state.cart[i].count}개
-                <button
-                  className="btn-sm basic"
-                  onClick={() => {
-                    dispatch(addCount({ id: state.cart[i].id, amount: 1 }));
-                  }}
-                >
-                  +
-                </button>
-              </div>
-              {/* 5. 가격 */}
-              <div>{state.cart[i].price * state.cart[i].count} 원</div>
+                {/* 4. 수량 */}
+                <div>
+                  <button
+                    className="btn-sm basic"
+                    onClick={() => {
+                      dispatch(addCount({ id: state.cart[i].id, amount: -1 }));
+                    }}
+                  >
+                    -
+                  </button>
+                  {state.cart[i].count}개
+                  <button
+                    className="btn-sm basic"
+                    onClick={() => {
+                      dispatch(addCount({ id: state.cart[i].id, amount: 1 }));
+                    }}
+                  >
+                    +
+                  </button>
+                </div>
+                {/* 5. 가격 */}
+                <div>{state.cart[i].price * state.cart[i].count} 원</div>
               </div>
               {/* 6. 버튼그룹 */}
               <div>
@@ -173,9 +173,9 @@ function Cart() {
               <button className="btn accent">선택상품 주문하기</button>
             </div>
           </div>
-        </section>
+        </>
       )}
-    </main>
+    </section>
   );
 }
 

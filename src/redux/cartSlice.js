@@ -1,10 +1,11 @@
-import { configureStore, createSlice } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 
-let cart = createSlice({
+let cartSlice = createSlice({
   name: "cart",
   initialState: [],
   reducers: {
     addCount(state, action) {
+      // payload와 같은 id를 가진 상품을 찾아서 +1 해달라
       let 번호 = state.findIndex((a) => {
         return a.id === action.payload.id;
       });
@@ -42,12 +43,6 @@ let cart = createSlice({
   },
 });
 
-export default configureStore({
-  reducer: {
-    cart: cart.reducer,
-  },
-});
-
 export let {
   addCount,
   addItem,
@@ -55,4 +50,6 @@ export let {
   deleteSelected,
   handleChkbox,
   handleAllChkbox,
-} = cart.actions;
+} = cartSlice.actions;
+
+export default cartSlice.reducer;

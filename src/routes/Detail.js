@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
-import { addItem } from "../store";
+import { addItem } from "../redux/cartSlice";
 
 function Detail(props) {
   let [탭, 탭변경] = useState(0);
@@ -18,17 +18,19 @@ function Detail(props) {
   }, []);
 
   return (
-    <main className={"start " + fade2}>
+    <div className={"start " + fade2}>
       {찾은상품 == null ? (
         <section>없는 상품입니다.</section>
       ) : (
-        <Product 찾은상품={찾은상품} />
+        <>
+          <Product 찾은상품={찾은상품} />
+          <section>
+            <Tab 탭={탭} 탭변경={탭변경} />
+            <TabContent 탭={탭} />
+          </section>
+        </>
       )}
-      <section>
-        <Tab 탭={탭} 탭변경={탭변경} />
-        <TabContent 탭={탭} />
-      </section>
-    </main>
+    </div>
   );
 }
 
@@ -49,8 +51,9 @@ function Product(props) {
     <section className="detail">
       <div className="detail__image">
         <img
-        alt={props.찾은상품.title} 
-        src={`${process.env.PUBLIC_URL}/img/${props.찾은상품.img}.jpg`} />
+          alt={props.찾은상품.title}
+          src={`${process.env.PUBLIC_URL}/img/${props.찾은상품.img}.jpg`}
+        />
       </div>
       <div className="detail__desc">
         <div>{props.찾은상품.title}</div>
